@@ -44,15 +44,50 @@
 </head>
 
 <body>
+    {{latitude}}
     <form method="POST" action="/planifier">
         <h1>Choisir intervention</h1>
-        <select name="interventionId">
+        <input type="hidden" name="interventions" value="{{interventionsJSON}}">
+        <input type="hidden" name="latitude" value="">
+        <input type="hidden" name="longitude" value="">
+        <input type="hidden" name="nom" value="">
+   
+
+        <select name="interventionId"  onchange="handleSelectChange()">
             {{#each interventions}}
-            <option value="{{id}}">{{nom}}</option>
+            <option value="{{@index}}">{{this.nom}}</option>
             {{/each}}
         </select>
         <button type="submit">Planifier</button>
     </form>
+        <script>
+            function handleSelectChange() {
+                 const selectElement = document.querySelector('select[name="interventionId"]');
+                const selectedOption = selectElement.options[selectElement.selectedIndex];
+                const interventionId = selectedOption.value;
+
+                // Log the selected interventionId
+           
+                let interventions = document.querySelector('input[name="interventions"]').value;
+            
+                 interventions = JSON.parse(interventions);
+            
+                const intervention= interventions[interventionId]
+            
+                //retriveing values fron intervention
+                const {latitude,longitude,nom} = intervention;
+        
+                //linking to input hidden
+                const selectedIndex = selectElement.selectedIndex;
+                const latitudeInput = document.querySelector('input[name="latitude"]');
+                const longitudeInput = document.querySelector('input[name="longitude"]');
+                const nomInput = document.querySelector('input[name="nom"]');
+                // setting value on input hidden
+                latitudeInput.value = latitude;
+                longitudeInput.value =longitude;
+                nomInput.value = nom ;
+            }
+        </script>
 </body>
 
 </html>
