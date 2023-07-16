@@ -151,7 +151,6 @@ export class AppService {
         technicianId: nearestTechnician.id,
         technicianNom: nearestTechnician.nom,
         technicianPrénom: nearestTechnician.prénom,
-        // Include other properties in the returned object
       };
 
       const endTime = new Date().getTime(); // End timestamp
@@ -159,7 +158,6 @@ export class AppService {
 
       return { assignedTechnicians, executionTime };
     } catch (error) {
-      // Handle errors
       console.error(error);
     }
   }
