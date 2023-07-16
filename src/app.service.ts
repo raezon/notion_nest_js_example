@@ -119,6 +119,7 @@ export class AppService {
 
   async planifier(intervention) {
     try {
+      console.log(intervention);
       const startTime = new Date().getTime(); // Start timestamp
 
       const technicienList = await this.getTechnicienList();
@@ -147,14 +148,15 @@ export class AppService {
       }
 
       const assignedTechnicians = {
-        interventionNom: intervention.interventionNom,
+        interventionId: intervention.id,
+        interventionNom: intervention.nom,
         technicianId: nearestTechnician.id,
         technicianNom: nearestTechnician.nom,
         technicianPrénom: nearestTechnician.prénom,
       };
 
       const endTime = new Date().getTime(); // End timestamp
-      const executionTime = endTime - startTime; // Execution time in milliseconds
+      const executionTime = (endTime - startTime) / 1000; // Execution time in milliseconds
 
       return { assignedTechnicians, executionTime };
     } catch (error) {

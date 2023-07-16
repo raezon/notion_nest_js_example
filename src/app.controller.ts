@@ -13,7 +13,9 @@ export class AppController {
     return { interventions: interventions, interventionsJSON };
   }
   @Post('planifier')
+  @Render('result')
   async planifier(@Body() data: any) {
-    return this.appService.planifier(data);
+    const result = this.appService.planifier(data);
+    return result;
   }
 }

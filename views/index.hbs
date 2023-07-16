@@ -47,13 +47,15 @@
     {{latitude}}
     <form method="POST" action="/planifier">
         <h1>Choisir intervention</h1>
+        <input type="hidden" name="id" value="">
         <input type="hidden" name="interventions" value="{{interventionsJSON}}">
         <input type="hidden" name="latitude" value="">
         <input type="hidden" name="longitude" value="">
         <input type="hidden" name="nom" value="">
    
 
-        <select name="interventionId"  onchange="handleSelectChange()">
+        <select name="interventionId" onchange="handleSelectChange()">
+            <option value="" disabled selected>Choisir une intervention</option>
             {{#each interventions}}
             <option value="{{@index}}">{{this.nom}}</option>
             {{/each}}
@@ -73,19 +75,21 @@
                  interventions = JSON.parse(interventions);
             
                 const intervention= interventions[interventionId]
-            
+                console.log(intervention)
                 //retriveing values fron intervention
-                const {latitude,longitude,nom} = intervention;
+                const {latitude,longitude,nom,id} = intervention;
         
                 //linking to input hidden
                 const selectedIndex = selectElement.selectedIndex;
                 const latitudeInput = document.querySelector('input[name="latitude"]');
                 const longitudeInput = document.querySelector('input[name="longitude"]');
                 const nomInput = document.querySelector('input[name="nom"]');
+                const idInput = document.querySelector('input[name="id"]');
                 // setting value on input hidden
                 latitudeInput.value = latitude;
                 longitudeInput.value =longitude;
                 nomInput.value = nom ;
+                idInput.value = id;
             }
         </script>
 </body>

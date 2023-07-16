@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Result</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .result-container {
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 10px;
+        }
+
+        p {
+            margin: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="result-container">
+        <h1>Technician</h1>
+        <p><strong>Intervention ID:</strong> {{assignedTechnicians.interventionId}}</p>
+        <p><strong>Intervention Nom:</strong> {{assignedTechnicians.interventionNom}}</p>
+        <p><strong>Technician ID:</strong> {{assignedTechnicians.technicianId}}</p>
+        <p><strong>Technician Nom:</strong> {{assignedTechnicians.technicianNom}}</p>
+        <p><strong>Technician Prénom:</strong> {{assignedTechnicians.technicianPrénom}}</p>
+        <h1>Temps de recherche</h1>
+        <p><strong>Execution Time:</strong> {{executionTime}} seconde</p>
+    </div>
+</body>
+
+</html>
